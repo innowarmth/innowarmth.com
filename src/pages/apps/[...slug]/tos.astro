@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import AppTOS from '../../../layouts/AppTOS.astro';
+
+export async function getStaticPaths() {
+	const toses = await getCollection('tos');
+	return toses.map((tos) => ({
+		params: { slug: tos.slug },
+		props: tos,
+	}));
+}
+type Props = CollectionEntry<'tos'>;
+
+const tos = Astro.props;
+const { Content } = await tos.render();
+---
+
+<AppTOS {...tos.data}>
+	<Content />
+</AppLanding>

@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import AppDeleteAccount from '../../../layouts/AppDeleteAccount.astro';
+
+export async function getStaticPaths() {
+	const apps = await getCollection('app');
+	return apps.map((privacy: { slug: any; }) => ({
+		params: { slug: privacy.slug },
+		props: privacy,
+	}));
+}
+type Props = CollectionEntry<'app'>;
+
+const app = Astro.props;
+const { Content } = await app.render();
+---
+
+<AppDeleteAccount {...app.data}>
+	<Content />
+</AppDeleteAccount>

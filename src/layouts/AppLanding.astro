@@ -1,0 +1,141 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+type Props = CollectionEntry<'app'>['data'];
+
+const { name, baseline, appleStoreLink, playStoreLink, heroImage } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={name} description={baseline} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+
+      .baseline {
+        display: block;
+        margin-bottom: 1em;
+        font-size: 1.5em;
+        font-weight: 700;
+				color: rgb(var(----accent-dark));
+      }
+
+			.last-updated-on {
+				font-style: italic;
+			}
+
+      .app-stores {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        margin-top: 1em;
+      }
+
+      .store-badge {
+        width: 200px;
+        height: 60px;
+      }
+
+      .store-badge img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1em;
+        margin-top: 1em;
+      }
+
+      .links ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .links li {
+        text-align: center;
+      }
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<h1>{name}</h1>
+            <span class="baseline">{baseline}</span>
+					</div>
+          <hr />
+          <div class="app-stores">
+            <a class="store-badge apple" href={ appleStoreLink } target="_blank">
+              <img alt="Download on the App Store badge" src="/app_store_btn_en.svg">
+            </a>
+            <a class="store-badge google" href={ playStoreLink } target="_blank">
+              <img alt="Download on the Google Play Store badge" src="/google_play_btn_en.svg">
+            </a>
+          </div>
+          <hr />
+          <slot />
+          <hr />
+          <div class="app-stores">
+            <a class="store-badge apple" href={ appleStoreLink } target="_blank">
+              <img alt="Download on the App Store badge" src="/app_store_btn_en.svg">
+            </a>
+            <a class="store-badge google" href={ playStoreLink } target="_blank">
+              <img alt="Download on the Google Play Store badge" src="/google_play_btn_en.svg">
+            </a>
+          </div>
+          <hr />
+				</div>
+        <div class="links">
+          <ul>
+            <li><a href="./privacy">Privacy Policy</a></li>
+            <li><a href="./tos">Terms of Service</a></li>
+            <li><a href="./delete">Delete my account</a></li>
+          </ul>
+        </div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

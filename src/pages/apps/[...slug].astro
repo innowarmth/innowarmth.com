@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import AppLanding from '../../layouts/AppLanding.astro';
+
+export async function getStaticPaths() {
+	const apps = await getCollection('app');
+	return apps.map((app: { slug: any; }) => ({
+		params: { slug: app.slug },
+		props: app,
+	}));
+}
+type Props = CollectionEntry<'app'>;
+
+const app = Astro.props;
+const { Content } = await app.render();
+---
+
+<AppLanding {...app.data}>
+	<Content />
+</AppLanding>

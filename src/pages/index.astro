@@ -1,48 +1,75 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const apps = (await getCollection('app')).filter((a: any) => a.data.isPublic === true).sort(
+		(a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<style>
+			ul {
+				list-style-type: none;
+				padding: 0;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			ul li {
+				margin: 0 0 1rem 0;
+				max-width: 300px;
+			}
+
+			ul li a {
+				display: block;
+				text-decoration: none;
+				transition: 0.2s ease;
+				border: 1px solid var(--accent);
+				border-radius: 12px;
+				padding: 1rem;
+
+				
+
+				&:hover {
+					transform: translateX(0.5rem);
+					box-shadow: var(--box-shadow);
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
+			<h1>🧑‍🚀 Hello, there!</h1>
 			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
+				Welcome at <strong>Innowarmth</strong>, on this website you can find a lot of information about our company and the 
+				products we offer.
 			</p>
 			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
+				Feel free to have a look at our <a href="/apps">apps</a> 
+				<section>
+					<ul>
+						{
+							apps.map((app: { slug: any; data: { heroImage: string | null | undefined; name: unknown; baseline: unknown; }; }) => (
+								<li>
+									<a href={`/apps/${app.slug}/`}>
+										<img width={300} src={app.data.heroImage} alt="" />
+										<h4 class="title">{app.data.name}</h4>
+										<label>{app.data.baseline}</label>
+									</a>
+								</li>
+							))
+						}
+					</ul>
+				</section>
 			</p>
 		</main>
 		<Footer />
