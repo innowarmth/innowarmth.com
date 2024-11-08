@@ -1,13 +1,12 @@
 ---
 name: 'Bedtime'
 baseline: "A sunset, a lullaby and the bedtime becomes a peaceful moment."
-appleStoreLink: 'https://apps.apple.com/app/bedtime-smiles-baby-milestones/id6498627261'
-playStoreLink: 'https://play.google.com/store/apps/details?id=com.innowarmth.bedtime'
+appleStoreLink: 'https://apps.apple.com/app/au-lit-berceuses-relaxantes/id6736860150'
+playStoreLink: 'https://play.google.com/store/apps/details?id=com.innowarmth.children_bedtime'
 logoImage: ''
 heroImage: '/app/bedtime/bedtime_hero.jpeg'
 pubDate: 'Nov 01 2024'
 deleteAccountFormUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeTu1u0dHEIcq6396ry4NhTfQE1W6ydnC32rmqmj6q9hD7APg/viewform?embedded=true'
-isPublic: false
 ---
 
 

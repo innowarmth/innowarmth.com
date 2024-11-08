@@ -29,7 +29,7 @@ The apps may request your permission to access your phone or other data (e.g. ph
 ## Third parties
 
 The app does use third party services that may collect information used to identify you.
-We encourage you to read the privacy policy of third party service providers used by the app Google Play Services, Firebase Crashlytics, Apple, Google and Mixpanel.
+We encourage you to read the privacy policy of third party service providers used by the app Google Play Services, Sentry, Apple, Google and Mixpanel.
 
 ## Use of Analytics
 

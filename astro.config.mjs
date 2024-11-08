@@ -6,6 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://innowamrth.com',
+	site: 'https://innowarmth.com',
 	integrations: [mdx(), sitemap()],
 });
